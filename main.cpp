@@ -39,17 +39,25 @@ int main()
   {
     table[r].resize(periods);
   }
-
+  for (int r=0; r<table.size(); r++)
+  {
+   for (int c=0; c<table[r].size(); c++)
+    {
+    table[r][c]=0;
+    }
+  }
     
   printScoreboard(table);
-   for (int r=0; r<grid.size(); r++)
+
+   for (int r=0; r<table.size(); r++)
     {
-      for (int c=0; c<grid.size(); c++)
+      for (int c=0; c<table[r].size(); c++)
        {
-        randomBetween[r][c]=(0,9);
+       table[r][c]=randomBetween(5,5);
        } 
-     cout<<endl;
     }
+
+    printScoreboard(table);
   }
   
   return 0;
@@ -62,11 +70,11 @@ int main()
      return second + rand()%(first-second+1);
      }
 
-     if (first<second)
+     else 
      {
      return first + rand()%(second-first+1);
      }
-
+   }
 
 
    void printScoreboard(vector< vector<int> > grid)
@@ -78,7 +86,6 @@ int main()
            cout<<"Player "<<r+1<<": ";
            for (int c=0; c<grid[r].size();c++)
               {
-                grid[r][c]=0;
                 cout<<grid[r][c]<<"|";
               }
            cout<<endl;
